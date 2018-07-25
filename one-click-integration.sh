@@ -176,7 +176,7 @@ echo ""
 ## Decode response and save as a certificate file
 echo "Decoding and saving certificate"
 echo ""
-crt=$( echo ${crtb64} | base64 --decode >> generated.crt )
+crt=$( echo ${crtb64} | base64 --decode > generated.crt )
 if [[ $? != 0 ]]
   then
     echo -e "${RED}Decoding failed${NC}"
@@ -184,6 +184,9 @@ if [[ $? != 0 ]]
 fi
 
 echo -e "${GREEN}Certificate retrieved successfully${NC}"
+
+echo "Creating pem file"
+cat generated.key generated.crt > generated.pem
 
 echo "Cleaning up..."
 $(rm generated.csr)
