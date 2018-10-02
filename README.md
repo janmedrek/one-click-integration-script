@@ -27,10 +27,10 @@ Following parameters are available:
 
 - No key file provided:
 ```
-./test.sh --url "https://connector-service.kyma.dev.com/v1/remoteenvironments/ec-default/info?token=J0RpZCBoZSBmaXJlIHNpeCBzaG90cyBvciBvbmx5IGZpdmUnPyBXZWxsIHRvIHRlbGwgeW91IHRoZSB0cnV0aCwgaW4gYWxsIHRoaXMgZXhjaXRlbWVudCwgaSBraW5kIG9mIGxvc3QgdHJhY2sgbXlzZWxmLg=="
+./one-click-integration.sh --url "https://connector-service.kyma.dev.com/v1/remoteenvironments/ec-default/info?token=J0RpZCBoZSBmaXJlIHNpeCBzaG90cyBvciBvbmx5IGZpdmUnPyBXZWxsIHRvIHRlbGwgeW91IHRoZSB0cnV0aCwgaW4gYWxsIHRoaXMgZXhjaXRlbWVudCwgaSBraW5kIG9mIGxvc3QgdHJhY2sgbXlzZWxmLg=="
 ```
 - Using existing key file:
 ```
-./test.sh --key certificate.key --url "https://connector-service.kyma.dev.com/v1/remoteenvironments/ec-default/info?token=QnV0IGJlaW5nIHRoYXQgdGhpcyBpcyBhIC40NCBNYWdudW0sIHRoZSBtb3N0IHBvd2VyZnVsIGhhbmRndW4gaW4gdGhlIHdvcmxkLCBhbmQgd291bGQgYmxvdyB5b3VyIGhlYWQgY2xlYW4gb2ZmLCB5b3UndmUgZ290IHRvIGFzayB5b3Vyc2VsZiBvbmUgcXVlc3Rpb246ICdEbyBJIGZlZWwgbHVja3k/JyBXZWxsIGRvIHlhLCBwdW5rPw=="
+./one-click-integration.sh --key certificate.key --url "https://connector-service.kyma.dev.com/v1/remoteenvironments/ec-default/info?token=QnV0IGJlaW5nIHRoYXQgdGhpcyBpcyBhIC40NCBNYWdudW0sIHRoZSBtb3N0IHBvd2VyZnVsIGhhbmRndW4gaW4gdGhlIHdvcmxkLCBhbmQgd291bGQgYmxvdyB5b3VyIGhlYWQgY2xlYW4gb2ZmLCB5b3UndmUgZ290IHRvIGFzayB5b3Vyc2VsZiBvbmUgcXVlc3Rpb246ICdEbyBJIGZlZWwgbHVja3k/JyBXZWxsIGRvIHlhLCBwdW5rPw=="
 ```
 
