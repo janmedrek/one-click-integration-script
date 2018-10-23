@@ -89,15 +89,15 @@ echo ""
 
 ## GET /info
 echo "Fetching info for CSR"
-infoRequest=$(curl -k -L ${u})
+infoRequest=$(curl -k -L "${u}")
 if [[ $? != 0 ]]
   then
     echo -e "${RED}Request Failed${NC}"
     exit 1;
 fi
 
-csrUrl=$( echo ${infoRequest} | jq '.csrUrl' | tr -d '"' )
-subject=$( echo ${infoRequest} | jq '.certificate.subject')
+csrUrl=$( echo ${infoRequest} | jq -r '.csrUrl')
+subject=$( echo ${infoRequest} | jq -r '.certificate.subject')
 
 ### Check if csr url and subject values were returned
 if [[ "$csrUrl" == null ]] || [[ "$subject" == null ]]; then
@@ -108,14 +108,14 @@ if [[ "$csrUrl" == null ]] || [[ "$subject" == null ]]; then
 fi
 
 ### Fix subject (if old version of connector-service is used)
-subject=$( echo ${subject} | tr , / | tr -d '"' )
+subject=$( echo "${subject}" | tr , / )
 
 ### Check if subject string starts with '/' and fix if it does not
 if [[ $subject != /* ]]; then subject="/$subject"; fi
 echo ""
 echo -e "${GREEN}Info request succeeded${NC}"
-echo -e "${GREEN}csrUrl: \t $( echo ${csrUrl} )${NC}"
-echo -e "${GREEN}subject: \t $( echo ${subject} )${NC}"
+echo -e "${GREEN}csrUrl: \t ${csrUrl}${NC}"
+echo -e "${GREEN}subject: \t ${subject}${NC}"
 
 ## If key was not provided create it
 if [[ -z "${k}" ]]; then
@@ -131,11 +131,11 @@ if [[ -z "${k}" ]]; then
 
   echo ""
   echo "Creating CSR"
-  csr=$(openssl req -new -out generated.csr -key generated.key -subj ${subject})
+  csr=$(openssl req -new -out generated.csr -key generated.key -subj "${subject}")
 else
   echo ""
   echo "Creating CSR"
-  csr=$(openssl req -new -out generated.csr -key ${k} -subj ${subject})
+  csr=$(openssl req -new -out generated.csr -key "${k}" -subj "${subject}")
 fi
 
 if [[ $? != 0 ]]
@@ -145,7 +145,7 @@ if [[ $? != 0 ]]
 fi
 
 ## Base64 encode the CSR
-csrb64=$( cat generated.csr | base64 )
+csrb64=$(base64 generated.csr | tr -d "\n")
 if [[ $? != 0 ]]
   then
     echo -e "${RED}CSR not found${NC}"
@@ -154,14 +154,14 @@ fi
 
 ## Send POST request to client-certs
 echo "Sending CSR"
-signRequest=$(curl -k -L -X POST -H "Content-Type: application/json" -d '{"csr":"'${csrb64}'"}' ${csrUrl})
+signRequest=$(curl -k -L -X POST -H "Content-Type: application/json" -d '{"csr":"'"${csrb64}"'"}' "${csrUrl}")
 if [[ $? != 0 ]]
   then
     echo -e "${RED}Request Failed${NC}"
     exit 1;
 fi
 
-crtb64=$( echo ${signRequest} | jq '.crt' | tr -d '"' )
+crtb64=$(echo "${signRequest}" | jq -r '.crt')
 if [[ "$crtb64" == null ]]; then
   echo -e "${RED}Sign request failed${NC}"
   echo -e "${RED}Status code: \t $( echo ${signRequest} | jq '.code' )${NC}"
@@ -176,7 +176,7 @@ echo ""
 ## Decode response and save as a certificate file
 echo "Decoding and saving certificate"
 echo ""
-crt=$( echo ${crtb64} | base64 --decode > generated.crt )
+crt=$(echo "${crtb64}" | openssl enc -base64 -d -A > generated.crt )
 if [[ $? != 0 ]]
   then
     echo -e "${RED}Decoding failed${NC}"
