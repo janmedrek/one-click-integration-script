@@ -14,7 +14,7 @@ In order to run the script following command line tools must be available:
 
 You can set up the script with the following command:
 ```
-curl https://raw.githubusercontent.com/janmedrek/one-click-integration-script/master/one-click-integration.sh >> one-click-integration.sh && chmod +x ./one-click-integration.sh
+curl https://raw.githubusercontent.com/janmedrek/one-click-integration-script/master/one-click-integration.sh > one-click-integration.sh && chmod +x ./one-click-integration.sh
 ```
 
 ## Usage
