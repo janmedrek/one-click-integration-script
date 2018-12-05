@@ -23,12 +23,14 @@ check_dependencies() {
   # Dependencies
   echo "Checking dependencies:"
 
+  local missing=0
+
   ## Curl
   $( which curl &> /dev/null; )
   if [[ $? != 0 ]]
     then
       echo -e "${RED}curl${NC}"
-      exit 1;
+      missing=1
     else echo -e "${GREEN}curl${NC}"
   fi
 
@@ -37,7 +39,7 @@ check_dependencies() {
   if [[ $? != 0 ]]
     then
       echo -e "${RED}openssl${NC}"
-      exit 1;
+      missing=1
     else echo -e "${GREEN}openssl${NC}"
   fi
 
@@ -46,7 +48,7 @@ check_dependencies() {
   if [[ $? != 0 ]]
     then
       echo -e "${RED}jq${NC}"
-      exit 1;
+      missing=1
     else echo -e "${GREEN}jq${NC}"
   fi
 
@@ -55,7 +57,7 @@ check_dependencies() {
   if [[ $? != 0 ]]
     then
       echo -e "${RED}base64${NC}"
-      exit 1;
+      missing=1
     else echo -e "${GREEN}base64${NC}"
   fi
 
@@ -64,8 +66,15 @@ check_dependencies() {
   if [[ $? != 0 ]]
     then
       echo -e "${RED}kubectl${NC}"
-      exit 1;
+      missing=1
     else echo -e "${GREEN}kubectl${NC}"
+  fi
+
+  if [[ $missing != 0 ]]
+    then
+      echo ""
+      echo -e "${RED}Dependencies missing, aborting${NC}"
+      exit 1;
   fi
 
   echo ""
