@@ -15,7 +15,7 @@ usage() {
   echo "$0 -cr[-hk]"
   echo -e "  -c | --config \t path to the kubeconfig file"
   echo -e "  -h | --help \t\t this dialog"
-  echo -e "  -r | --remoteenv \t name of remote environment"
+  echo -e "  -r | --app \t name of application"
   exit 1;
 }
 
@@ -132,13 +132,13 @@ if [[ ! -z "${config}" ]]
   then
     if [[ -z "${re}" ]]
       then
-        echo -e "${RED}Failed to fetch url: Remote Environment not provided for kubeconfig fetch${NC}"
+        echo -e "${RED}Failed to fetch url: Application not provided for kubeconfig fetch${NC}"
         exit 1;
     fi
 
     echo -e "${GREEN}Kubeconfig file present, fetching url${NC}"
     echo "Creating TokenRequest"
-    printf "apiVersion: connectorservice.kyma-project.io/v1alpha1\nkind: TokenRequest\nmetadata:\n  name: ${re}" > generated.yaml
+    printf "apiVersion: applicationconnector.kyma-project.io/v1alpha1\nkind: TokenRequest\nmetadata:\n  name: ${re}" > generated.yaml
 
     # Create a TokenRequest and temporarily save it to the file
     kcapply=$( kubectl apply --kubeconfig=${config} -f generated.yaml )
