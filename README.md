@@ -16,7 +16,22 @@ In order to run the script following command line tools must be available:
 
 ## Installation
 
-You can set up the script with the following command:
+### Brew
+Script now has a [brew](https://github.com/Homebrew/brew) formula! Simply run:
+```
+brew tap janmedrek/one-click-integration
+brew install one-click-integration
+```
+
+After the installation it's accessible via:
+```
+one-click-integration.sh
+```
+
+> No need to remember where you've put that pesky file anymore!
+
+### Curl
+Otherwise you can set up the script with the following command:
 ```
 curl https://raw.githubusercontent.com/janmedrek/one-click-integration-script/master/one-click-integration.sh > one-click-integration.sh && chmod +x ./one-click-integration.sh
 ```
@@ -43,19 +58,19 @@ __Following parameters are available:__
 ### url fetch
 - No key file provided:
 ```
-./one-click-integration.sh --url "https://connector-service.kyma.dev.com/v1/remoteenvironments/ec-default/info?token=J0RpZCBoZSBmaXJlIHNpeCBzaG90cyBvciBvbmx5IGZpdmUnPyBXZWxsIHRvIHRlbGwgeW91IHRoZSB0cnV0aCwgaW4gYWxsIHRoaXMgZXhjaXRlbWVudCwgaSBraW5kIG9mIGxvc3QgdHJhY2sgbXlzZWxmLg=="
+one-click-integration.sh --url "https://connector-service.kyma.dev.com/v1/remoteenvironments/ec-default/info?token=J0RpZCBoZSBmaXJlIHNpeCBzaG90cyBvciBvbmx5IGZpdmUnPyBXZWxsIHRvIHRlbGwgeW91IHRoZSB0cnV0aCwgaW4gYWxsIHRoaXMgZXhjaXRlbWVudCwgaSBraW5kIG9mIGxvc3QgdHJhY2sgbXlzZWxmLg=="
 ```
 - Using existing key file:
 ```
-./one-click-integration.sh --key certificate.key --url "https://connector-service.kyma.dev.com/v1/remoteenvironments/ec-default/info?token=QnV0IGJlaW5nIHRoYXQgdGhpcyBpcyBhIC40NCBNYWdudW0sIHRoZSBtb3N0IHBvd2VyZnVsIGhhbmRndW4gaW4gdGhlIHdvcmxkLCBhbmQgd291bGQgYmxvdyB5b3VyIGhlYWQgY2xlYW4gb2ZmLCB5b3UndmUgZ290IHRvIGFzayB5b3Vyc2VsZiBvbmUgcXVlc3Rpb246ICdEbyBJIGZlZWwgbHVja3k/JyBXZWxsIGRvIHlhLCBwdW5rPw=="
+one-click-integration.sh --key certificate.key --url "https://connector-service.kyma.dev.com/v1/remoteenvironments/ec-default/info?token=QnV0IGJlaW5nIHRoYXQgdGhpcyBpcyBhIC40NCBNYWdudW0sIHRoZSBtb3N0IHBvd2VyZnVsIGhhbmRndW4gaW4gdGhlIHdvcmxkLCBhbmQgd291bGQgYmxvdyB5b3VyIGhlYWQgY2xlYW4gb2ZmLCB5b3UndmUgZ290IHRvIGFzayB5b3Vyc2VsZiBvbmUgcXVlc3Rpb246ICdEbyBJIGZlZWwgbHVja3k/JyBXZWxsIGRvIHlhLCBwdW5rPw=="
 ```
 
 ### kubeconfig fetch
 - No key file provided:
 ```
-./one-click-integration.sh --config "/Users/username/kubeconfigdir/kubeconfig" -r "re-name"
+one-click-integration.sh --config "/Users/username/kubeconfigdir/kubeconfig" -r "re-name"
 ```
 - Using existing key file:
 ```
-./one-click-integration.sh --config "/Users/username/kubeconfigdir/kubeconfig" -r "re-name" --key certificate.key
+one-click-integration.sh --config "/Users/username/kubeconfigdir/kubeconfig" -r "re-name" --key certificate.key
 ```
