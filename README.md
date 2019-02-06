@@ -74,3 +74,14 @@ one-click-integration.sh --config "/Users/username/kubeconfigdir/kubeconfig" -r 
 ```
 one-click-integration.sh --config "/Users/username/kubeconfigdir/kubeconfig" -r "re-name" --key certificate.key
 ```
+
+## Auto-completion
+
+There is a nice auto-completion script which can be added for increasing the user experience: [Auto-completion for one-click-integration.](./one-click-integration-script-completion.bash)
+
+Simply add the following command to your profile script:
+
+```console
+source ./one-click-integration-script-completion.bash
+```
+
