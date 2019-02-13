@@ -198,10 +198,10 @@ if [[ "$csrUrl" == null ]] || [[ "$subject" == null ]]; then
 fi
 
 ### Fix subject (if old version of connector-service is used)
-subject=$( echo "${subject}" | tr , / )
+subject=$( echo "${subject}" | tr , \\ )
 
 ### Check if subject string starts with '/' and fix if it does not
-if [[ $subject != /* ]]; then subject="/$subject"; fi
+if [[ $subject != /* ]]; then subject="//$subject"; fi
 echo ""
 echo -e "${GREEN}Info request succeeded${NC}"
 echo -e "${GREEN}csrUrl: \t ${csrUrl}${NC}"
