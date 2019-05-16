@@ -237,7 +237,7 @@ if [[ $? != 0 ]]
 fi
 
 ## Base64 encode the CSR
-csrb64=$( base64 generated.csr | tr -d "\n" )
+csrb64=$( base64 generated.csr | tr -d "\n" | tr -d "\r")
 if [[ $? != 0 ]]
   then
     echo -e "${RED}CSR not found${NC}"
